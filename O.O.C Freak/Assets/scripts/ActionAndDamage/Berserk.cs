@@ -45,7 +45,7 @@ public class Berserk : MonoBehaviour
     void Update()
     {
         berserkMode();
-        
+        //dhsdkjhsdkj
 
     }
     
