@@ -27,27 +27,27 @@ public class Projectile : MonoBehaviour
 
         if (transform.position.x == target.x && transform.position.y == target.y)
         {
-           // DestroyProjectile();
+           DestroyProjectile();
         }
 
     }
 
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         
-    //    if (other.CompareTag("Player"))
-    //    {
-    //            DestroyProjectile();
+       if (other.CompareTag("Player") || other.CompareTag("SolidObjects"))
+       {
+               DestroyProjectile();
 
-    //    }
+       }
       
         
 
 
-    //}
-    //void DestroyProjectile()
-    //{
-    //    Destroy(gameObject);
-    //}
+    }
+    void DestroyProjectile()
+    {
+       Destroy(gameObject);
+    }
 
 }
