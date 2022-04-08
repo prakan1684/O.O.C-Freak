@@ -4,18 +4,15 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance;
+    public static event Action<GameState> OnBeforeStateChanged;
+    public static event Action<GameState> OnAfterStateChanged;
 
-    public GameState State;
+    public GameState State { get; private set; }
 
 
     public static event Action<GameState> OnGameStateChanged;
-    void Awake()
-    {
-        Instance = this;
-    }
 
     private void Start()
     {

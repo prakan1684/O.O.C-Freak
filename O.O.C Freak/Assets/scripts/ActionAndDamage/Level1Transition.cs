@@ -10,8 +10,7 @@ public class Level1Transition : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Level2");
-            /*GameManager.Instance.UpdateGameState(GameState.Level2);*/
+            GameManager.Instance.UpdateGameState(GameState.Level2);
         }
         
     }
