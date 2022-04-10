@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Attack : MonoBehaviour
 {
-    public float speed;
+    public float missileSpeed;
 
     [SerializeField] private GameObject Missile;
     [SerializeField] private Transform rocketLauncherEndPoint;
@@ -38,7 +38,7 @@ public class Player_Attack : MonoBehaviour
         shootDirection = shootDirection-transform.position;
         //...instantiating the rocket
         Rigidbody2D bulletInstance = Instantiate(Missile.GetComponent<Rigidbody2D>(), transform.position, rocketLauncherEndPoint.rotation);
-        bulletInstance.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
+        bulletInstance.velocity = new Vector2(shootDirection.x * missileSpeed, shootDirection.y * missileSpeed);
 
 
 

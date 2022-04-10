@@ -34,10 +34,7 @@ public class Projectile_Missile : MonoBehaviour
     void Update()
     {
 
-        if ((transform.position.x == targetRanged.x && transform.position.y == targetRanged.y) || (transform.position.x == targetMelee.x && transform.position.y == targetMelee.y))
-        {
-           Destroy(gameObject);
-        }
+        DestroyProjectile(m_Lifespan);
 
     }
 
@@ -46,7 +43,9 @@ public class Projectile_Missile : MonoBehaviour
         
        if (other.CompareTag("meleeEnemy") || other.CompareTag("SolidObjects") || other.CompareTag("rangedEnemy"))
        {
-               DestroyProjectile();
+           Debug.Log("Missile hit an enemy");
+           DestroyProjectile(0.02f);
+
 
        }
       
@@ -54,9 +53,9 @@ public class Projectile_Missile : MonoBehaviour
 
 
     }
-    void DestroyProjectile()
+    void DestroyProjectile(float lifespan)
     {
-       Destroy(gameObject, m_Lifespan);
+       Destroy(gameObject, lifespan);
     }
 
 }

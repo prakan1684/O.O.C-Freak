@@ -4,8 +4,9 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : PersistentSingleton<GameManager>
 {
+    public GameObject player;
     public static event Action<GameState> OnBeforeStateChanged;
     public static event Action<GameState> OnAfterStateChanged;
 
@@ -64,10 +65,13 @@ public class GameManager : Singleton<GameManager>
     private void HandleLevel1()
     {
         Time.timeScale = 1f;
+        Debug.Log("CHANGED GAME STATE TO LEVEL 1!!");
+        SceneManager.LoadScene("Level1");
         //CountDownTimer.instance.timerHasStarted = true;
     }
     private void HandleStartMenu()
     {
+        player.SetActive(false);
         Time.timeScale = 0f;
         //CountDownTimer.instance.timerHasStarted = false;
 

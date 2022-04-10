@@ -19,7 +19,6 @@ public class PlayerHealthManager : MonoBehaviour
     {
 
         instance = this;
-        
         healthBar.SetMaxHealth(maxHealth, currentHealth);
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StartMenu : MonoBehaviour
+public class StartMenu : PersistentSingleton<StartMenu>
 {
     public GameObject StartMenuUI;
     public GameObject OptionMenuUI;
@@ -20,6 +20,7 @@ public class StartMenu : MonoBehaviour
     }
     public void PlayButton()
     {
+        
         GameManager.Instance.UpdateGameState(GameState.Level1);
         StartMenuUI.SetActive(false);
         BattleUI.SetActive(true);

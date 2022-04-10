@@ -15,6 +15,7 @@ TagManager:
   - enemyHitbox
   - Ground
   - Coconut
+  - missile
   layers:
   - Default
   - TransparentFX
