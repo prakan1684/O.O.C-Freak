@@ -4,15 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : PersistentSingleton<HealthBar>
 {
 
     private void Update()
     {
-        if (slider.value <= 0)
-        {
-            //SceneManager.LoadScene("RestartScene");
-        }
+        SetHealth(PlayerHealthManager.Instance.currentHealth);
     }
     public Slider slider;
 

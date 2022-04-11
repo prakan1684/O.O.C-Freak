@@ -136,8 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  playerHurt: {fileID: 0}
-  playerHealth: {fileID: 0}
   damage: 5
 --- !u!198 &8488633174822281310
 ParticleSystem:
@@ -4924,7 +4922,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af234b23d8ce71d419862db457b1cee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitToHurt: 0
+  waitToHurt: 1
   damageToGive: 10
-  playerHealth: {fileID: 0}
-  healthBar: {fileID: 0}

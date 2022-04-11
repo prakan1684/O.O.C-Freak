@@ -9,14 +9,9 @@ public class HurtPlayer : MonoBehaviour
     public float waitToHurt;
     [SerializeField]
     public int damageToGive = 1;
-    public static HurtPlayer instance;
-    public PlayerHealthManager playerHealth;
-    public HealthBar healthBar;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        instance = this;
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -26,7 +21,7 @@ public class HurtPlayer : MonoBehaviour
             waitToHurt -= Time.deltaTime;
             if (waitToHurt <= 0)
             {
-                DamagePlayer(damageToGive, playerHealth.currentHealth);
+                DamagePlayer(damageToGive, PlayerHealthManager.Instance.currentHealth);
                 waitToHurt = 1.5f;
             }
         }
@@ -37,7 +32,7 @@ public class HurtPlayer : MonoBehaviour
     {
 
         playerHealth -= damageToGive;
-        healthBar.SetHealth(playerHealth);
+        HealthBar.Instance.SetHealth(playerHealth);
         if (playerHealth > 0)
         {
             gameObject.SetActive(false);
@@ -50,7 +45,7 @@ public class HurtPlayer : MonoBehaviour
         if (other.collider.tag == "Player")
         {
 
-            DamagePlayer(damageToGive, playerHealth.currentHealth);
+            DamagePlayer(damageToGive, PlayerHealthManager.Instance.currentHealth);
 
 
             //other.gameObject.SetActive(false);

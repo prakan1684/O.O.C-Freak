@@ -8,8 +8,7 @@ public class Projectile : MonoBehaviour
 
     private Transform player;
     private Vector2 target;
-    public HurtPlayer playerHurt;
-    public PlayerHealthManager playerHealth;
+    private bool playerHasBeenHit;
 
     public int damage = 5; // < -- this doesnt matter bc we change slider.value
     // Start is called before the first frame update
@@ -32,22 +31,31 @@ public class Projectile : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
         
-       if (other.CompareTag("Player") || other.CompareTag("SolidObjects"))
-       {
-               DestroyProjectile();
+    //    if (other.CompareTag("Player"))
+    //    {
+    //         playerHasBeenHit = true;   
+    //         DamagePlayer(damage);
+    //         DestroyProjectile();
 
-       }
-      
-        
+    //    }
 
-
-    }
+    // }
     void DestroyProjectile()
     {
        Destroy(gameObject);
     }
+
+    // void DamagePlayer(int damage)
+    // {
+    //     if(playerHasBeenHit)
+    //     {
+    //         int playerCurrentHealth = PlayerHealthManager.Instance.currentHealth;
+    //         playerCurrentHealth -= damage;
+    //     }
+    // }
+
 
 }

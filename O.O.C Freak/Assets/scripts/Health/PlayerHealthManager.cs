@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealthManager : MonoBehaviour
+public class PlayerHealthManager : Singleton<PlayerHealthManager>
 {
     
     public int currentHealth;
     [SerializeField]
     private int maxHealth;
-    public static PlayerHealthManager instance;
-    public HealthBar healthBar;
+    public bool playerTookDamage;
+
     
     // Start is called before the first frame update
 
@@ -18,8 +18,7 @@ public class PlayerHealthManager : MonoBehaviour
     void Start()
     {
 
-        instance = this;
-        healthBar.SetMaxHealth(maxHealth, currentHealth);
+        HealthBar.Instance.SetMaxHealth(maxHealth, currentHealth);
     }
 
     // Update is called once per frame
@@ -27,17 +26,31 @@ public class PlayerHealthManager : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            //SceneManager.LoadScene("RestartScene");
+            SceneManager.LoadScene("RestartScene");
         }
+
+        HealthBar.Instance.SetHealth(currentHealth);
     }
 
-    /*public void PlayerTookDamage(int damage) 
+    public void PlayerTookDamage(int damage) 
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-        if(currentHealth <= 0)
+        if (playerTookDamage)
         {
-            Debug.Log("Player died");
+            currentHealth -= damage;
+            HealthBar.Instance.SetHealth(currentHealth);
+        
         }
-    }*/
+        
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("bullet"))
+        {
+            playerTookDamage = true;
+            PlayerTookDamage(5);
+            playerTookDamage = false;
+        }
+
+    }
 }
