@@ -16,6 +16,7 @@ TagManager:
   - Ground
   - Coconut
   - missile
+  - ammoText
   layers:
   - Default
   - TransparentFX

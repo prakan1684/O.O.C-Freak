@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour
     {
         if (slider.value <= 0)
         {
-            SceneManager.LoadScene("RestartScene");
+            //SceneManager.LoadScene("RestartScene");
         }
     }
     public Slider slider;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_Attack : MonoBehaviour
 {
     public float missileSpeed;
-
+    public bool allowAttack = true;
     [SerializeField] private GameObject Missile;
     [SerializeField] private Transform rocketLauncherEndPoint;
 
@@ -22,25 +22,36 @@ public class Player_Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetMouseButton(0) && allowAttack)
         {
-            Attack();
+            StartCoroutine(FireRate());
+            RocketLauncher.Instance.currentAmmo = RocketLauncher.Instance.currentAmmo - 1;
         }
         
     }
 
     void Attack()
     {
+
         Vector3 shootDirection;
         shootDirection = Input.mousePosition;
         shootDirection.z = 0.0f;
         shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
         shootDirection = shootDirection-transform.position;
-        //...instantiating the rocket
+        //...instantiating the rocket\
         Rigidbody2D bulletInstance = Instantiate(Missile.GetComponent<Rigidbody2D>(), transform.position, rocketLauncherEndPoint.rotation);
         bulletInstance.velocity = new Vector2(shootDirection.x * missileSpeed, shootDirection.y * missileSpeed);
 
 
+
+
+    }
+    IEnumerator FireRate()
+    {
+        allowAttack = false;
+        Attack();
+        yield return new WaitForSeconds(0.5f);
+        allowAttack = true;
 
     }
 }
